@@ -1,0 +1,38 @@
+
+@if (session('success'))
+@php    
+    $success = (object)session('success');
+@endphp
+
+
+@if($success->formNo == 2)
+<script>
+    $("#login_form").hide();
+    $('#VerificationCode').show();
+    $('#verifyEmail').val($success->email);
+</script>
+@endif
+
+@php
+	// session()->forget('emailError');
+@endphp
+@endif
+
+@if (session('error'))
+@php    
+    $error = (object)session('error');
+@endphp
+
+@if($error->formNo == 3)
+<script>
+    $("#login_form").hide();
+    $('#VerificationCode').show();
+    $('#verifyEmail').val({{ $success->email }});
+</script>
+@endif
+
+@php
+	// session()->forget('otpSent');
+@endphp
+@endif
+
